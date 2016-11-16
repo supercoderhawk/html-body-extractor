@@ -1,5 +1,9 @@
 # 网页正文抽取
+
+[![PyPI](https://img.shields.io/pypi/v/body-extractor-py3.svg)](https://pypi.python.org/pypi/body-extractor-py3)
+
 论文《基于行块分布函数的通用网页正文抽取》的Python实现。
+
 
 ## 安装
 ```bash
