@@ -3,7 +3,6 @@ import re
 from bs4 import BeautifulSoup
 import requests
 
-
 class BodyExtractor():
     def __init__(self, html):
         self.html = html  # 输入的HTML文本
