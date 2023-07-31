@@ -2,9 +2,9 @@ from distutils.core import setup
 
 setup(
     name='body-extractor-py3',
-    version='0.0.1.4',
+    version='0.0.2',
     packages=['body_extractor'],
-    url='https://github.com/xyb930826/html-body-extractor',
+    url='https://github.com/supercoderhawk/html-body-extractor',
     license='MIT License',
     author='supercoderhawk',
     author_email='supercoderhawk@gmail.com',

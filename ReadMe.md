@@ -16,7 +16,7 @@ from body_extractor import BodyExtractor
 import requests
 
 url = 'http://md.tech-ex.com/ired/2016/47848.html'
-res = request.get(url)
+res = requests.get(url)
 extractor = BodyExtractor(res.content.decode(res.encoding))
 print(extractor.content) # 抽取的正文部分
 print(extractor.title)  # 抽取的title标签，即网页标题
