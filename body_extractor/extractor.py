@@ -11,10 +11,10 @@ class BodyExtractor():
             self.html = html.decode(encoding)
         else:
             self.html = html
-        if lang == 'CN':
-            self.splitter = ''
-        else:
-            self.splitter = ' '
+        # if lang == 'CN':
+        #     self.splitter = ''
+        # else:
+        self.splitter = ' '
         self.pureText = ''  # 去除标签后的
         self.THRESHOLD = 50  # 骤升点阈值
         self.K = 3  # 行块中行数
@@ -63,9 +63,15 @@ class BodyExtractor():
             count = list(map(lambda s: len(s), self.lines))
         else:
             count = list(map(lambda s: len(s.split()), self.lines))
-        for i in range(len(count) - self.K + 1):
-            self.wordCount.append(count[i] + count[i + 1] + count[i + 2])
-        self.maxIndex = self.wordCount.index(max(self.wordCount))
+
+        if len(count) <= self.K - 1:
+            self.wordCount = [sum(count)]
+            self.maxIndex = 0
+        else:
+            for i in range(len(count) - self.K + 1):
+                self.wordCount.append(count[i] + count[i + 1] + count[i + 2])
+
+            self.maxIndex = self.wordCount.index(max(self.wordCount))
 
     def html_escape(self, text):
         """
@@ -83,6 +89,7 @@ class BodyExtractor():
         return text
 
     def _start(self):
+        i = -1
         for i in [-x - 1 + self.maxIndex for x in range(self.maxIndex)]:
             gap = min(self.maxIndex - i, self.K)
             if sum(self.wordCount[i + 1:i + 1 + gap]) > 0:
@@ -119,7 +126,8 @@ if __name__ == '__main__':
     # if res.encoding != 'ISO-8859-1' or res.encoding != 'utf-8':
     #     extractor = BodyExtractor(res.content, encoding=res.encoding)
     # else:
-    extractor = BodyExtractor(res.content, lang='EN')
+    # extractor = BodyExtractor(res.content, lang='EN')
+    extractor = BodyExtractor('This is', lang='EN')
     print(extractor.content)
     # print(extractor.lines)
     print(extractor.title)

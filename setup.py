@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='body-extractor-py3',
-    version='0.0.2',
+    version='0.0.3',
     packages=['body_extractor'],
     url='https://github.com/supercoderhawk/html-body-extractor',
     license='MIT License',
